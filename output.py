@@ -5,7 +5,7 @@ def roll_total_message(dice1, dice2):
 def automatic_winner_message(dice_total, bet):
     """Print automatic win message [7 or 11]"""
     print(f"Winner! {dice_total} is an automatic win."+
-    f'"Pass" line pays {bet}.')
+    f' "Pass" line pays {bet}.')
 
 def automatic_loser_message(dice_total, bet):
     """Print automatic loss message [2, 3, 12]"""

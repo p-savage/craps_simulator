@@ -28,7 +28,8 @@ class GameLog:
         """Reset the roll counter"""
         self.rolls = 0
 
-    def update_log(self):
+    def update_log(self, balance):
         self.game_log.append(
-        f'Shooter {self.shooter} : {self.rolls} Rolls : {self.points_hit} Points Hit'
+        f'Shooter {self.shooter} : {self.rolls} Rolls : '+
+        f'{self.points_hit} Points Hit : Balance ${balance}'
         )

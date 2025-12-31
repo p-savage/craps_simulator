@@ -2,33 +2,30 @@ def quit_check(user_input):
     """Check if input is 'q' for quit"""
     if user_input.strip().lower() == 'q':
         return True
-
+    
 def pass_line_prompt(shooter):
     """Prompt the shooter for a valid pass line bet amount"""
-    prompt = (f'\n\tShooter {shooter}, place'+
+    prompt = (f'\n\t{shooter}, place'+
                 ' a "Pass" line wager.\n\tMin: $15, Max: $100 -> ')
     while True:
-        amount = input(prompt).strip()
-        if quit_check(amount):
+        response = input(prompt).strip()
+        if quit_check(response):
             return False
         try :
-            pass_line_bet = int(amount)
+            pass_line_bet = int(response)
             if pass_line_bet < 15:
                 print("\nMinimum wager amount is $15.")
             elif pass_line_bet > 100:
                 print("\nMaximum wager amount is $100.")
             else:
-                print(pass_line_bet)
-                return pass_line_bet
+                    return pass_line_bet
         except ValueError:
             print("\nPlease enter a numeric, "+
-                  "whole number bet without the $")
-    
-    ### mixed data types as possible outputs (int & bool) ###
+                    "whole number bet without the $")  
 
 def come_out_prompt(shooter):
     """Prompt the shooter for the come out roll"""
-    prompt = (f"\n\tShooter {shooter}, the puck is off."+
+    prompt = (f"\n\t{shooter}, the puck is off."+
                 " Roll to establish a point.\n"+
                 "\t(Press Enter to roll or Q to quit)")
     key_press = input(prompt)

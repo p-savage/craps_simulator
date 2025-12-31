@@ -29,3 +29,15 @@ def game_log_message(log):
     for i in log:
         print(i)
     print("\n")
+
+def skip_shooter_message(shooter):
+    """Print shooter being skipped message"""
+    print(f"\n{shooter} doesn't have the minimum bet amount. New shooter.")
+
+def insufficient_balance_message(balance):
+    """Print insufficient balance message"""
+    print(f"\nInsufficient balance. Current bankroll: {balance}")
+
+def end_game_message():
+    """Print end game message"""
+    print("No shooter meets the pass line minimum. Game Over :(")

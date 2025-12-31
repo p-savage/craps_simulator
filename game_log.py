@@ -3,14 +3,9 @@ class GameLog:
 
     def __init__(self):
         """Initialize game log values"""
-        self.shooter = 1
         self.rolls = 0
         self.points_hit = 0
         self.game_log = []
-
-    def inc_shooter(self):
-        """Increment the shooter counter"""
-        self.shooter += 1
 
     def inc_roll(self):
         """Increment the roll counter"""
@@ -28,8 +23,8 @@ class GameLog:
         """Reset the roll counter"""
         self.rolls = 0
 
-    def update_log(self, balance):
+    def update_log(self, shooter, balance):
         self.game_log.append(
-        f'Shooter {self.shooter} : {self.rolls} Rolls : '+
+        f'{shooter} : {self.rolls} Rolls : '+
         f'{self.points_hit} Points Hit : Balance ${balance}'
         )

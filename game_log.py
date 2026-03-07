@@ -1,30 +1,47 @@
 class GameLog:
-    """Handle the counters and game log"""
+    """Class to handle the counters and game log.
+    
+    Increments points and roll totals. Maintains the game log for the
+    simulation session."""
 
-    def __init__(self):
-        """Initialize game log values"""
-        self.rolls = 0
-        self.points_hit = 0
-        self.game_log = []
+    def __init__(self) -> None:
+        """Initialize game log, rolls, and points hit values."""
+        
+        self.rolls: int = 0
+        self.points_hit: int = 0
+        self.game_log: list[str] = []
 
-    def inc_roll(self):
-        """Increment the roll counter"""
+    def inc_roll(self) -> None:
+        """Increment the roll counter by 1."""
+        
         self.rolls += 1
 
-    def inc_points(self):
-        """Increment the points hit counter"""
+    def inc_points(self) -> None:
+        """Increment the points hit counter by 1."""
+        
         self.points_hit += 1
 
-    def reset_points_hit(self):
-        """Reset the points hit counter"""
+    def reset_points_hit(self) -> None:
+        """Reset the points hit counter to 0."""
+        
         self.points_hit = 0
 
-    def reset_rolls(self):
-        """Reset the roll counter"""
+    def reset_rolls(self) -> None:
+        """Reset the roll counter to 0."""
+        
         self.rolls = 0
 
-    def update_log(self, shooter, balance):
+    def update_log(
+        self, 
+        shooter: str, 
+        balance: int
+    ) -> None:
+        """Use shooter and balance info to format a new log entry.
+        
+        Appends logging information to the game log regarding the 
+        shooter's roll count, number of points hit, and balance."""
+
         self.game_log.append(
-        f'{shooter} : {self.rolls} Rolls : '+
-        f'{self.points_hit} Points Hit : Balance ${balance}'
+            f"{shooter} | {self.rolls} Rolls | "
+            f"{self.points_hit} Points Hit | Balance ${balance}"
         )

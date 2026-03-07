@@ -1,43 +1,70 @@
-def roll_total_message(dice1, dice2):
-    """Print the roll total message"""
+def welcome_message() -> None:
+    """Print the welcome message."""
+
+    print("\nWelcome to the craps table. Who are our players?")
+
+def invalid_name_message() -> None:
+    """Print the invalid name entry message."""
+
+    print("Invalid entry. Each player name must be unique.")
+
+def roll_total_message(dice1: int, dice2: int) -> None:
+    """Print the roll total message."""
+
     print(f"\nYou rolled {dice1}, {dice2}")
 
-def automatic_winner_message(dice_total, bet):
-    """Print automatic win message [7 or 11]"""
-    print(f"Winner! {dice_total} is an automatic win."+
-    f' "Pass" line pays {bet}.')
+def automatic_winner_message(dice_total: int, bet: int) -> None:
+    """Print automatic pass line win message."""
+    
+    print(
+        f"Winner! {dice_total} is an automatic win."
+        f" Pass line pays {bet}."
+    )
 
-def automatic_loser_message(dice_total, bet):
-    """Print automatic loss message [2, 3, 12]"""
-    print(f'{dice_total} craps. "Pass" line bet loses {bet}.')
+def automatic_loser_message(dice_total: int, bet: int) -> None:
+    """Print automatic pass line loss message."""
+    
+    print(f"{dice_total} craps. Pass line bet loses {bet}.")
 
-def seven_out_message(bet):
-    """Print seven-out message"""
-    print(f'7 craps! "Pass" line bet loses {bet}. New shooter.')
+def updated_balance_message(balance: int) -> None:
+    """Print a message displaying the updated balance."""
 
-def point_hit_message(dice_total, bet):
-    """Print point hit message"""
-    print(f'{dice_total} is a Winner! "Pass" line pays {bet}.')
+    print(f"Bankroll: {balance}")
 
-def trivial_total_message(dice_total):
-    """Print trivial total message"""
+def seven_out_message(bet: int) -> None:
+    """Print seven-out message."""
+    
+    print(f"7 out! Pass line bet loses {bet}. New shooter.")
+
+def point_hit_message(dice_total: int, bet: int) -> None:
+    """Print point hit message."""
+    
+    print(f"{dice_total} is a Winner! Pass line pays {bet}.")
+
+def trivial_total_message(dice_total: int) -> None:
+    """Print trivial total message."""
+    
     print(f"{dice_total} is not the point.")
 
-def game_log_message(log):
-    """Print game log after user-initiated quit"""
+def game_log_message(log: list[str]) -> None:
+    """Print game log entries sequentially."""
+    
     print("\n")
-    for i in log:
-        print(i)
+    for entry in log:
+        print(entry)
     print("\n")
 
-def skip_shooter_message(shooter):
-    """Print shooter being skipped message"""
+def skip_shooter_message(shooter: str) -> None:
+    """Print shooter being skipped message."""
+    
     print(f"\n{shooter} doesn't have the minimum bet amount. New shooter.")
 
-def insufficient_balance_message(balance):
-    """Print insufficient balance message"""
+def insufficient_balance_message(balance: int) -> None:
+    """Print insufficient balance message."""
+    
     print(f"\nInsufficient balance. Current bankroll: {balance}")
 
-def end_game_message():
-    """Print end game message"""
+def end_game_message() -> None:
+    """Print end game message."""
+    
     print("No shooter meets the pass line minimum. Game Over :(")

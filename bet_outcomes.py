@@ -1,22 +1,15 @@
-class Bets:
-    """Ledger for tracking bets"""
+def pass_line_win(bet: int, balance: int) -> int:
+    """Increase balance by the bet amount.
     
-    def __init__(self):
-        """Initialize the ledger"""
-        self.pass_line_bet = None
+    Returns the updated player balance."""
+    
+    balance += bet
+    return balance
 
-    def pass_line_win(self, balance):
-        """Increase shooter balance by the pass line bet amount
-        and reset the pass line bet amount"""
-        balance += self.pass_line_bet
-        print(f"Bankroll: {balance}")
-        self.pass_line_bet = 0
-        return balance
-
-    def pass_line_loss(self, balance):
-        """Decrease shooter balance by the pass line bet amount
-        and reset the pass line bet amount"""
-        balance -= self.pass_line_bet
-        print(f"Bankroll: {balance}")
-        self.pass_line_bet = 0
-        return balance
+def pass_line_loss(bet: int, balance: int) -> int:
+    """Decrease balance by the bet amount.
+    
+    Returns the updated player balance."""
+    
+    balance -= bet
+    return balance

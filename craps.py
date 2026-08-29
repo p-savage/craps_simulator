@@ -6,6 +6,7 @@ import output as out
 import user_input as user
 from game_log import GameLog
 
+
 class Craps:
     """Class to contain the craps table simulator and its associated 
     methods. Hosts and manages game state, handles game phase loops, 

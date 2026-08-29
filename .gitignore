@@ -181,3 +181,5 @@ cython_debug/
 .cursorindexingignore
 
 scratch.py
+
+.DS_Store

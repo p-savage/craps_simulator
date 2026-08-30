@@ -1,5 +1,6 @@
 import random
 
+
 def roll_dice() -> tuple[int, int]:
     """Simulate rolling two dice. 
     

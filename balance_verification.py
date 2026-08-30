@@ -5,7 +5,7 @@ def verify_minimum_balance(balance: int, bet_min: int) -> bool:
     
     return balance >= bet_min
     
-def inc_shooter_index(index: int, shooters: list[str]) -> int:  # noqa: E741
+def inc_shooter_index(index: int, shooters: list[str]) -> int:
     """Increment to the next shooter in the shooters list.
     
     Returns the index of the next shooter in the list by wrapping to the 

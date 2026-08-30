@@ -1,11 +1,9 @@
 class QuitSim(Exception):
     """Raised when the user input indicates a Quit request."""
-    pass
 
 class ConstructionCompleted(Exception):
     """Raised when the user is finished adding players to the table before 
     the maximum player limit is reached."""
-    pass
     
 def player_name(
         prompt: str,

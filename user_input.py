@@ -26,7 +26,7 @@ def player_name(
         if name == "f":
             raise ConstructionCompleted()
         if len(name) > char_limit:
-            print("Invalid entry. Maximum of 20 characters.")
+            print(f"Invalid entry. Maximum of {char_limit} characters.")
             continue
         if not name.isalpha():
             print(

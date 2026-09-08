@@ -1,6 +1,3 @@
-from config_constants import PASS_LINE_MAX, PASS_LINE_MIN
-
-
 class QuitSim(Exception):
     """Raised when the user input indicates a Quit request."""
 
@@ -80,8 +77,8 @@ def pass_line_prompt(
     bet unless a custom exception check is detected."""
     
     prompt = (
-        f'\n\t{shooter}, place a Pass line wager.\n\tMin: ${PASS_LINE_MIN}, '
-        f'Max: ${PASS_LINE_MAX} -> '
+        f'\n\t{shooter}, place a Pass line wager.\n\tMin: ${bet_min}, '
+        f'Max: ${bet_max} -> '
     )
     while True:
         response = input(prompt).strip()

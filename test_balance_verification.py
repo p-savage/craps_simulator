@@ -1,3 +1,10 @@
+"""
+Tests for the balance_verification module:
+
+Balance minimums, bet coverage, and shooter indexing.
+"""
+
+
 import pytest
 
 import balance_verification
@@ -13,6 +20,7 @@ def test_verify_minimum_balance(balance, bet_min, expected_return):
         balance, bet_min,
     ) == expected_return
 
+
 shooters = ['me', 'you', 'him', 'her']
 shooter = ['me']
 @pytest.mark.parametrize(
@@ -20,11 +28,19 @@ shooter = ['me']
     [(1, shooters, 2), (3, shooters, 0), (0, shooter, 0)],
 )
 def test_inc_shooter_index(index, shooters, expected_return):
+    """
+    Tests shooter list indexing.
+
+    Parametrized test to cover a normal index incrementation, an index
+    incrementation that wraps to the beginning of the list, and an
+    incrementation for a list of length 1.
+    """
 
     assert balance_verification.inc_shooter_index(
         index,
         shooters,
     ) == expected_return
+
 
 @pytest.mark.parametrize(
     "bet, balance, expected_return",

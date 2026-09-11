@@ -211,9 +211,12 @@ platform darwin -- Python 3.12.5, pytest-9.1.1, pluggy-1.6.0
 rootdir: (full path to your project root directory)
 collected 29 items                                                                                                                                                                                                                                                
 
-test_balance_verification.py .........                                                                                                                                                                                                                      [ 31%]
-test_bet_outcomes.py ..                                                                                                                                                                                                                                     [ 37%]
-test_user_input.py ..................                                                                                                                                                                                                                       [100%]
+test_balance_verification.py .........
+[ 31%]
+test_bet_outcomes.py ..
+[ 37%]
+test_user_input.py ..................
+[100%]
 
 ==================== 29 passed in 0.03s ====================
 (venv) (your command prompt) craps % 

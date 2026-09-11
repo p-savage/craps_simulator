@@ -32,7 +32,7 @@ types are bases for future iterations.
 
 Requires Python version 3.10 or later.
 Project written entirely in the standard Python library. No external 
-dependencies.
+dependencies to operate the simulator.
 
 1. Clone the repository and navigate to its directory:
 
@@ -165,13 +165,113 @@ game_log.py             ->  session statistic logger
 dice_roller.py          ->  dice roll simulator
 ```
 
-The central Craps class in craps.py contains the initialization of 
-configuration values, constructs the table, handles game state to 
-facilitate phase switching, and detects session termination exceptions. 
-It calls bet_outcomes.py and balance_verification.py modules for game 
-logic needs. Dice_roller.py and game_log.py are simulation infrastructure
-modules. User_input.py and output.py handle interactions at the command 
-line. Config_constants.py is a container for rule set values.
+The central Craps class in `craps.py` initializes configuration values,
+constructs the table, handles game state to facilitate phase switching,
+and detects session termination exceptions. It calls `bet_outcomes.py`
+and `balance_verification.py` modules to handle game logic.
+`dice_roller.py` and `game_log.py` are simulation infrastructure modules.
+`user_input.py` and `output.py` handle interactions at the command line. `config_constants.py` is a container for rule set values.
+
+## Testing
+
+While the operation of the simulator requires no external dependencies,
+an optional unit-test suite is included. It will require some very light
+setup before utilization.\
+A virtual environment is recommended to keep project dependencies
+contained. A virtual environment can be created easily from the command
+line. Navigate to the project's root directory and run:
+```text
+python3 -m venv venv
+```
+This will create a new folder in the project directory called `venv`. Now
+the virtual environment needs to be activated. That can be done by
+running:
+```text
+source venv/bin/activate
+```
+The command prompt should now start with `(venv)`.\
+With an activated virtual environment in the project's directory, pytest
+can be installed without affecting the system's global environment. To do
+that, run:
+```text
+pip install pytest
+```
+With pytest installed, run:
+```text
+pytest
+```
+Executing this command from the project root directory with an activated
+virtual environment will automatically detect the three modules that
+begin with `test_`. The test functions in those modules will be executed
+automatically and the default output will look like this:
+```text
+(venv) (your command prompt) craps % pytest                       
+==================== test session starts ====================
+platform darwin -- Python 3.12.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: (full path to your project root directory)
+collected 29 items                                                                                                                                                                                                                                                
+
+test_balance_verification.py .........                                                                                                                                                                                                                      [ 31%]
+test_bet_outcomes.py ..                                                                                                                                                                                                                                     [ 37%]
+test_user_input.py ..................                                                                                                                                                                                                                       [100%]
+
+==================== 29 passed in 0.03s ====================
+(venv) (your command prompt) craps % 
+```
+The "Future Improvements" section outlines some possible feature
+expansions. Should their implementation be attempted, the unit-tests
+will be a useful tool for detecting any changes that break an important
+block of logic. For instance, say that some future editing session
+changes line 8 of `bet_outcomes.py` from
+```
+balance += bet
+```
+to 
+```
+balance -= bet
+```
+Now, when the simulator calls `pass_line_win()`, the bet amount will be
+deducted from the shooter's balance. This will cause many problems for a
+simulator that is built assuming that bet-wins increase a shooter's
+balance. Running pytest will report a failure - signaling that some
+block of code has been altered in a way that breaks the broader function
+of the simulator. The output will look like this:
+```text
+(venv) (your command prompt) craps % pytest
+==================== test session starts ====================
+platform darwin -- Python 3.12.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: (full path to your project root directory)
+collected 29 items                                                                      
+
+test_balance_verification.py .........                                            [ 31%]
+test_bet_outcomes.py F.                                                           [ 37%]
+test_user_input.py ..................                                             [100%]
+
+==================== FAILURES ====================
+__________ test_pass_line_win_increases_balance_by_bet __________
+
+    def test_pass_line_win_increases_balance_by_bet():
+    
+        bet = 15
+        balance = 100
+>       assert bet_outcomes.pass_line_win(bet=bet, balance=balance) == 115
+E       assert 85 == 115
+E        +  where 85 = <function pass_line_win at 0x10378a340>(bet=15, balance=100)
+E        +    where <function pass_line_win at 0x10378a340> = bet_outcomes.pass_line_win
+
+test_bet_outcomes.py:15: AssertionError
+==================== short test summary info ====================
+FAILED test_bet_outcomes.py::test_pass_line_win_increases_balance_by_bet - assert 85 == 115
+==================== 1 failed, 28 passed in 0.07s ====================
+(venv) (your command prompt) craps % 
+```
+A concise description of the
+issue is shown towards the bottom under `short test summary info`.
+```text
+FAILED test_bet_outcomes.py::test_pass_line_win_increases_balance_by_bet - assert 85 == 115
+```
+That specifies the test module, function, and assertion that failed so
+debugging can be as efficient as possible.
 
 ## Future Improvements
 
